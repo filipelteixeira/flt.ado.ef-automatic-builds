@@ -1,0 +1,43 @@
+﻿name: 1$(rev:.r)
+
+trigger:
+  branches:
+    include:
+      - 'dev'
+
+stages:
+- stage: 'Build'
+  jobs:
+  - job: 'Build'
+    pool:
+      vmImage: 'windows-latest'
+
+    steps:
+    ## Packages Creation/Update ## 
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet restore project'
+      inputs:
+        command: restore
+        projects: '**/flt.ado.efbuild.entities.csproj'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet build project'
+      inputs:
+        command: build
+        projects: '**/flt.ado.efbuild.entities.csproj'
+        
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet pack project'
+      inputs:
+        command: pack
+        packagesToPack: '**/flt.ado.efbuild.entities.csproj'
+        versioningScheme: byEnvVar
+        versionEnvVar: Build.BuildNumber
+       
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet push project'
+      inputs:
+        command: push
+        packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+        publishVstsFeed: '8050b1a3-00bd-4f0e-b88f-793a7be6a54a'
+        publishPackageMetadata: true

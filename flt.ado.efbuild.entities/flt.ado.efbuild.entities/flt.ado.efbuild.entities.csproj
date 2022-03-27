@@ -4,6 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<Authors>FLT</Authors>
+	<Company>FLT</Company>
+	<PackageTags>FLT; Automatic Build; Entities; EF Core 6</PackageTags>
+	<Description>
+		Package containing Entity Framework Core Automatic Pipeline Scaffold.
+	</Description>
   </PropertyGroup>
 
   <ItemGroup>

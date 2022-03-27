@@ -1,0 +1,22 @@
+﻿trigger: none
+
+stages:
+- stage: 'Build'
+  jobs:
+  - job: 'Build'
+    pool:
+      vmImage: 'windows-latest'
+
+    steps:
+    ## Packages Creation/Update ## 
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet restore project'
+      inputs:
+        command: restore
+        projects: '**/flt.ado.efbuild.entities.csproj'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet build project'
+      inputs:
+        command: build
+        projects: '**/flt.ado.efbuild.entities.csproj'

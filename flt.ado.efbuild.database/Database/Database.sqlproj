@@ -71,6 +71,7 @@
     <Build Include="dbo\Tables\departments.sql" />
     <Build Include="dbo\Tables\employees.sql" />
     <Build Include="dbo\Tables\dependents.sql" />
+    <Build Include="dbo\Tables\jobTitles.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Pipelines\build-pipeline.yml" />
@@ -78,5 +79,6 @@
     <None Include="Deployment\Automated-scaffold-integration.ps1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Pipelines\gate-pipeline.yml" />
   </ItemGroup>
 </Project>
